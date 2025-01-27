@@ -1,0 +1,5 @@
+Insight 1: Placeholder for business insight derived from transaction dataset analysis.
+Insight 2: Placeholder for business insight derived from product dataset analysis.
+Insight 3: Placeholder for business insight derived from customer dataset analysis.
+Insight 4: Placeholder for cross-analysis between transaction and product datasets.
+Insight 5: Placeholder for cross-analysis between transaction and customer datasets.
