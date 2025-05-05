@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Div Creation</title>
+    <style>
+        #Container {
+            border: 2px solid black;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .new-div {
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <button id="Container">Create Div</button>
+
+    <script>
+        const createDivButton = document.getElementById('Container');
+        createDivButton.addEventListener('click', () => {
+            const newDiv = document.createElement('div');
+            newDiv.textContent = 'new div';
+            newDiv.className = 'new-div';
+            document.body.appendChild(newDiv);
+        });
+    </script>
+</body>
+</html>

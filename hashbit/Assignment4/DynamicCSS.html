@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DynamicCSS</title>
+    <style>
+        .text-here {
+            font-size: 55px;
+            font-family: sans-serif;
+            color: black;
+            text-decoration: none;
+            font-style: normal;
+            font-weight: normal;
+            line-height: normal;
+            text-align: left;
+            letter-spacing: normal;
+            word-spacing: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='text-here' id='text-container'>This is some example text</div>
+
+    <input type="text" id="colorbox">
+
+    <button id="colorchange">Change Colour</button>
+
+    <br><br>
+
+    <input type="range" id="fontsize" min="10" max="100" value="55">
+    <br><br>
+
+
+    <button id="italic" class="stylebt">Italics</button>
+    <button id="underline" class="stylebt">Underline</button>
+    <button id="bold" class="stylebt">Bold</button>
+
+    <br><br>
+
+
+    <select id="list">
+        <option value="serif">Serif</option>
+        <option value="sans-serif">Sans-Serif</option>
+        <option value="monospace">Monospace</option>
+        <option value="cursive">Cursive</option>
+        <option value="fantasy">Fantasy</option>
+    </select>
+
+
+    <br><br>
+
+    <button id="getstyle">Get CSS</button>
+
+    <br><br>
+    <p id="css-props"></p>
+
+
+    <script>
+        const text = document.getElementById('text-container');
+
+        // Change color on button click
+        document.getElementById('colorchange').addEventListener('click', () => {
+            const colorInput = document.getElementById('colorbox').value.trim();
+            if (colorInput) {
+                text.style.color = colorInput;
+            }
+        });
+
+        // Change font size using slider
+        document.getElementById('fontsize').addEventListener('input', () => {
+            const size = document.getElementById('fontsize').value;
+            text.style.fontSize = size + 'px';
+        });
+
+        // Toggle italic
+        document.getElementById('italic').addEventListener('click', () => {
+            text.style.fontStyle = text.style.fontStyle === 'italic' ? 'normal' : 'italic';
+        });
+
+        // Toggle underline
+        document.getElementById('underline').addEventListener('click', () => {
+            text.style.textDecoration = text.style.textDecoration === 'underline' ? 'none' : 'underline';
+        });
+
+        // Toggle bold
+        document.getElementById('bold').addEventListener('click', () => {
+            text.style.fontWeight = text.style.fontWeight === 'bold' ? 'normal' : 'bold';
+        });
+
+        // Change font family from dropdown
+        document.getElementById('list').addEventListener('change', (e) => {
+            text.style.fontFamily = e.target.value;
+        });
+
+        // Get CSS styles
+        document.getElementById('getstyle').addEventListener('click', () => {
+            const computed = window.getComputedStyle(text);
+            const styles = {
+                color: computed.color, // this gives rgb(...) - we will not convert here
+                'font-size': computed.fontSize,
+                'font-family': computed.fontFamily,
+                'text-decoration': computed.textDecorationLine,
+                'font-style': computed.fontStyle,
+                'font-weight': computed.fontWeight,
+            };
+
+            let output = '';
+            for (const [prop, value] of Object.entries(styles)) {
+                output += `${prop}: ${value}; `;
+            }
+
+            document.getElementById('css-props').textContent = output.trim();
+        });
+    </script>
+
+</body>
+
+</html>
